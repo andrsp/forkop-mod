@@ -173,12 +173,55 @@ function renderLocalLists(payload) {
         white-space: nowrap;
         vertical-align: middle;
       }
+      /* Keep the existing ping handler and accessible label; hide only its text. */
+      #cbi-forkop-dashboard-_mount_node .fkp_dashboard-page__outbound-grid__item__ping-button {
+        width: 22px;
+        min-width: 22px;
+        height: 22px;
+        min-height: 22px;
+        padding: 1px;
+        font-size: 0;
+        --fkp-ping-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M3 12h4l3-8 4 16 3-8h4' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      }
+      #cbi-forkop-dashboard-_mount_node .fkp_dashboard-page__outbound-grid__item__ping-button::before {
+        content: "";
+        display: block;
+        width: 13px;
+        height: 13px;
+        flex: 0 0 auto;
+        box-sizing: border-box;
+        background: currentColor;
+        -webkit-mask: var(--fkp-ping-icon) center / contain no-repeat;
+        mask: var(--fkp-ping-icon) center / contain no-repeat;
+      }
+      #cbi-forkop-dashboard-_mount_node .fkp_dashboard-page__outbound-grid__item__ping-button:disabled::before {
+        -webkit-mask: none;
+        mask: none;
+        background: none;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: fkp-dashboard-ping-spin 1s linear infinite;
+      }
+      @keyframes fkp-dashboard-ping-spin {
+        to { transform: rotate(360deg); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #cbi-forkop-dashboard-_mount_node .fkp_dashboard-page__outbound-grid__item__ping-button:disabled::before {
+          animation: none;
+        }
+      }
       #cbi-forkop-dashboard-_local_lists > .cbi-value-title {
         display: none;
       }
       #cbi-forkop-dashboard-_local_lists > .cbi-value-field {
         margin-left: 0;
         width: 100%;
+      }
+      #cbi-forkop-dashboard-_local_lists > output,
+      #cbi-forkop-dashboard-_local_lists > div {
+        width: 100%;
+        min-width: 0;
       }
     </style>
     <div class="fkp_dashboard-page__local-lists__header">

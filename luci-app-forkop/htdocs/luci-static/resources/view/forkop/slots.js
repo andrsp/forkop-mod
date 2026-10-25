@@ -185,7 +185,7 @@ function renderSlots(payload) {
       }
       .fkp-slots__card {
         padding: 12px 14px 13px;
-        border-left: 3px solid transparent;
+        border-left: 3px solid var(--fkp-s-line);
       }
       .fkp-slots__card.is-active {
         border-left-color: #337ab7;
@@ -396,6 +396,11 @@ function renderSlots(payload) {
       }
       #cbi-forkop-slots-_slots_panel > .cbi-value-title { display: none; }
       #cbi-forkop-slots-_slots_panel > .cbi-value-field { margin-left: 0; width: 100%; }
+      #cbi-forkop-slots-_slots_panel > output,
+      #cbi-forkop-slots-_slots_panel > div {
+        width: 100%;
+        min-width: 0;
+      }
     </style>
     <p class="fkp-slots__lead">${escapeHtml(_("Save the current Forkop config into a slot. Auto-switch applies the online slot if any host answers and the offline slot only if every host is down."))}</p>
     <div class="fkp-slots__grid">
